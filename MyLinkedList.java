@@ -4,6 +4,10 @@ public class MyLinkedList<E>{
 
   public MyLinkedList(){}
 
+  public int size(){
+    return length;
+  }
+
   public String toString(){
     String ans = "[";
     // String ans equals open brackets
@@ -58,7 +62,81 @@ public class MyLinkedList<E>{
     return true;
   }
 
+  public void add(int index, E value){
+    if (index < 0 || index > size()) throw new IndexOutOfBoundsException("Cannot add, index " + index + " is out of bounds");
+    // if index is less than zero or is greater than size, throw IndexOutOfBoundsException
+    if (index == size()){
+      // if index is equal to the size
+      add(value);
+      // use the boolean add(value) method
+    }
+    else if (index == 0){
+      // if index is zero
+      Node temp = new Node(value, start, null);
+      // temp variable is assigned to a new Node with data value and next start
+      start.setPrev(temp);
+      // start's prev is set to temp
+      start = temp;
+      // temp becomes start
+      length++;
+      // length is increased by one
+    }
+    else{
+      // if index is between 0 and size
+      Node temp = new Node(value, getNthNode(index), getNthNode(index - 1));
+      // temp variable is assigned to a new Node with data value, next the Node at index, prev the Node at index - 1
+      getNthNode(index).setPrev(temp);
+      // the prev of the Node at index is set to temp
+      getNthNode(index - 1).setNext(temp);
+      // the next of the Node at index - 1 is set to temp
+      length++;
+      // length increases by one
+    }
+  }
 
+  public void extend(MyLinkedList<E> other){
+        //in O(1) runtime, move the elements from other onto the end of this
+        //The size of other is reduced to 0
+        //The size of this is now the combined sizes of both original lists
+        if (other.size() > 0){
+          // if the size of other is greater than 0
+          length += other.size();
+          // length increases by the size of other
+          end.setNext(other.start);
+          // end is set to the start Node of other
+          other.start.setPrev(end);
+          // the prev of other's start Node is set to end
+          end = other.end;
+          // end gets the end Node of other
+          other.length = 0;
+          // length of other becomes 0
+          other.start = null;
+          // the start of other is null
+          other.end = null;
+          // the end of other is also null
+        }
+    }
+
+  private Node getNthNode(int index){
+    int count = 0;
+    // count starts at 0
+    Node temp = start;
+    // temp is equal to start
+    while (temp != null){
+      // while temp is not null
+      if (count == index){
+        // if the count equals the index
+        return temp;
+        // returns the Node temp
+      }
+      count++;
+      // count increases by one
+      temp = temp.next();
+      // temp becomes the next Node after temp
+    }
+    return null;
+    // return null if index is out of bounds
+  }
 
   private class Node{
     private E data;
