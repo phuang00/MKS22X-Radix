@@ -1,5 +1,8 @@
 public class MyLinkedList<E>{
+  private int length;
+  private Node start,end;
 
+  public MyLinkedList(){}
 
 
   private class Node{
@@ -41,6 +44,14 @@ public class MyLinkedList<E>{
     public String toString(){
       return "" + data;
     }
-
   }
+
+  public static void main(String[] args) {
+    MyLinkedList<Integer> list = new MyLinkedList<>();
+    System.out.println(list.length);
+    System.out.println(list.start);
+    System.out.println(list.end);
+  }
+
+
 }
