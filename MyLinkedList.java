@@ -145,6 +145,13 @@ public class MyLinkedList<E>{
     // if there are no elements in the MyLinkedList, throw NoSuchElementException
     E temp = start.getData();
     // return value (temp) is set to the value of start
+    if (size() == 1){
+      // if the length of the MyLinkedList is 1
+      start = null;
+      // start is set to null
+      return temp;
+      // return temp value
+    }
     start = getNthNode(1);
     // start is set to the Node at index 1
     start.setPrev(null);
@@ -204,6 +211,18 @@ public class MyLinkedList<E>{
     System.out.println(list);
     list.add(10);
     list.add(3);
+    System.out.println(list);
+    list.clear();
+    System.out.println(list);
+    for (int i = 0; i < 10; i++){
+      list.add(i);
+    }
+    System.out.println(list);
+    list.add(9, 100);
+    System.out.println(list);
+    for (int i = 0; i < 11; i++){
+      list.removeFront();
+    }
     System.out.println(list);
   }
 
