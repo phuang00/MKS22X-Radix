@@ -23,6 +23,43 @@ public class MyLinkedList<E>{
     return ans;
   }
 
+  public void clear(){
+    length = 0;
+    start = null;
+    end = null;
+  }
+
+  public boolean add(E value){
+    if (start == null){
+      // if there is no start Node
+      start = new Node(value, null, null);
+      // start gets new Node with data equal to value
+      end = start;
+      // end also equals start
+    }
+    else if (end == start){
+      // else if there is no end Node
+      end = new Node(value, null, start);
+      // end gets new Node with data value and prev start
+      start.setNext(end);
+      // start's next is set to end
+    }
+    else{
+      // else if there is a start and end Node
+      Node temp = new Node(value, null, end);
+      // a temp Node is initialized with data value and prev end
+      end.setNext(temp);
+      // end's next is set to temp
+      end = temp;
+      // end is assigned to temp
+    }
+    length++;
+    // increase length by one
+    return true;
+  }
+
+
+
   private class Node{
     private E data;
     private Node next,prev;
@@ -69,6 +106,9 @@ public class MyLinkedList<E>{
     //System.out.println(list.length);
     //System.out.println(list.start);
     //System.out.println(list.end);
+    System.out.println(list);
+    list.add(10);
+    list.add(3);
     System.out.println(list);
   }
 
