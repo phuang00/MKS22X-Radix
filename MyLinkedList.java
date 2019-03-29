@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class MyLinkedList<E>{
   private int length;
   private Node start,end;
@@ -136,6 +138,21 @@ public class MyLinkedList<E>{
     }
     return null;
     // return null if index is out of bounds
+  }
+
+  public E removeFront(){
+    if (size() == 0) throw new NoSuchElementException();
+    // if there are no elements in the MyLinkedList, throw NoSuchElementException
+    E temp = start.getData();
+    // return value (temp) is set to the value of start
+    start = getNthNode(1);
+    // start is set to the Node at index 1
+    start.setPrev(null);
+    // set the prev of the new start to null
+    length--;
+    // decrease the length by one
+    return temp;
+    // return the temp value
   }
 
   private class Node{
