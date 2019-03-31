@@ -147,13 +147,13 @@ public class MyLinkedList<E>{
     // return value (temp) is set to the value of start
     if (size() == 1){
       // if the length of the MyLinkedList is 1
-      start = null;
-      // start is set to null
+      clear();
+      // clear MyLinkedList
       return temp;
       // return temp value
     }
-    start = getNthNode(1);
-    // start is set to the Node at index 1
+    start = start.next();
+    // start is set to the next Node
     start.setPrev(null);
     // set the prev of the new start to null
     length--;
@@ -224,6 +224,12 @@ public class MyLinkedList<E>{
       list.removeFront();
     }
     System.out.println(list);
+    for (int i = 0; i < 10; i++){
+      list.add(i);
+    }
+    for (int i = 0; i < 10; i++){
+      list.removeFront();
+    }
   }
 
 
