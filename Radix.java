@@ -1,5 +1,5 @@
+import java.util.*;
 @SuppressWarnings({"unchecked", "rawtypes"})
-
 
 public class Radix{
   public static void radixsort(int[] data){
@@ -30,20 +30,25 @@ public class Radix{
       }
       for (int i = 1; i < 20; i++){
         buckets[0].extend(buckets[i]);
-        System.out.println(buckets[0]);
+        //System.out.println(buckets[0]);
       }
       dat = buckets[0];
-      System.out.println("buckets[0]" + dat);
+      //System.out.println("buckets[0]" + dat);
       for (int i = 0; i < 20; i++){
         buckets[i] = new MyLinkedList<>();
       }
       place++;
     }
-    System.out.println(dat);
+    //System.out.println(dat);
+    for (int i = 0; i < data.length; i++){
+      data[i] = dat.removeFront();
+    }
   }
 
   public static void main(String[] args) {
     int[] data = new int[] {-32,1,5,7,3,2};
+    System.out.println(Arrays.toString(data));
     radixsort(data);
+    System.out.println(Arrays.toString(data));
   }
 }
