@@ -25,22 +25,32 @@ public class Radix{
     }
     //System.out.println(max);
     int place = 0;
+    // current digit/place is set to zero
     while (place < max){
+      // while the digit we are on is less than max digits
       while (dat.size() > 0){
+        // while temp dat size is greater than zero
         int value = dat.removeFront();
+        // remove front value and set to value
         int digit = (int)(value / Math.pow(10, place)) % 10;
+        // take the digit
         if (digit < 0){
+          // if the digit is less than zero
           buckets[9 + digit].add(value);
+          // put it in corresponding bucket between 0 and 9
         }
         else{
+          // else if digit is greater or equal to zero
           buckets[10 + digit].add(value);
+          // put in corresponding bucket between 10 and 19
         }
       }
+      dat = buckets[0];
       for (int i = 1; i < 20; i++){
-        buckets[0].extend(buckets[i]);
+        dat.extend(buckets[i]);
+        // merge the buckets
         //System.out.println(buckets[0]);
       }
-      dat = buckets[0];
       //System.out.println("buckets[0]" + dat);
       for (int i = 0; i < 20; i++){
         buckets[i] = new MyLinkedList<>();
