@@ -46,20 +46,24 @@ public class Radix{
         }
       }
       dat = buckets[0];
+      // temp dat is set to MyLinkedList at index 0 of bucket
       for (int i = 1; i < 20; i++){
         dat.extend(buckets[i]);
-        // merge the buckets
+        // merge dat with the remaining buckets
         //System.out.println(buckets[0]);
       }
       //System.out.println("buckets[0]" + dat);
       for (int i = 0; i < 20; i++){
         buckets[i] = new MyLinkedList<>();
+        // clear buckets
       }
       place++;
+      // increase place by one
     }
     //System.out.println(dat);
     for (int i = 0; i < data.length; i++){
       data[i] = dat.removeFront();
+      // copy sorted values back into array
     }
   }
 
