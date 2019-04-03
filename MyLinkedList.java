@@ -100,7 +100,13 @@ public class MyLinkedList<E>{
         //in O(1) runtime, move the elements from other onto the end of this
         //The size of other is reduced to 0
         //The size of this is now the combined sizes of both original lists
-        if (other.size() > 0){
+        if (size() == 0){
+          start = other.start;
+          end = other.end;
+          length += other.size();
+          other.clear();
+        }
+        else if (other.size() > 0){
           // if the size of other is greater than 0
           length += other.size();
           // length increases by the size of other
@@ -110,12 +116,7 @@ public class MyLinkedList<E>{
           // the prev of other's start Node is set to end
           end = other.end;
           // end gets the end Node of other
-          other.length = 0;
-          // length of other becomes 0
-          other.start = null;
-          // the start of other is null
-          other.end = null;
-          // the end of other is also null
+          other.clear();
         }
     }
 
