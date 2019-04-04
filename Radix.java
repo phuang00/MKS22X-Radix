@@ -20,29 +20,40 @@ public class Radix{
         max = (int)Math.ceil(Math.log10(Math.abs(data[i])));
         // max is updated
       }
-      dat.add(data[i]);
-      // add every value to the MyLinkedList without changing order
     }
     //System.out.println(max);
     int place = 0;
     // current digit/place is set to zero
     while (place < max){
       // while the digit we are on is less than max digits
-      while (dat.size() > 0){
-        // while temp dat size is greater than zero
-        int value = dat.removeFront();
-        // remove front value and set to value
-        int digit = (int)(value / Math.pow(10, place)) % 10;
-        // take the digit
-        if (digit < 0){
-          // if the digit is less than zero
-          buckets[9 + digit].add(value);
-          // put it in corresponding bucket between 0 and 9
+      if (place == 0){
+        for (int temp: data){
+          int digit = temp % 10;
+          if (digit < 0){
+            buckets[9 + digit].add(temp);
+          }
+          else{
+            buckets[10 + digit].add(temp);
+          }
         }
-        else{
-          // else if digit is greater or equal to zero
-          buckets[10 + digit].add(value);
-          // put in corresponding bucket between 10 and 19
+      }
+      else{
+        while (dat.size() > 0){
+          // while temp dat size is greater than zero
+          int value = dat.removeFront();
+          // remove front value and set to value
+          int digit = (int)(value / Math.pow(10, place)) % 10;
+          // take the digit
+          if (digit < 0){
+            // if the digit is less than zero
+            buckets[9 + digit].add(value);
+            // put it in corresponding bucket between 0 and 9
+          }
+          else{
+            // else if digit is greater or equal to zero
+            buckets[10 + digit].add(value);
+            // put in corresponding bucket between 10 and 19
+          }
         }
       }
       for (int i = 0; i < 20; i++){
