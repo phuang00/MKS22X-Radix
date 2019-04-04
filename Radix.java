@@ -15,12 +15,11 @@ public class Radix{
     // max # of digits is set to zero
     for (int i = 0; i < data.length; i++){
       // loop through the data array
-      if (Math.abs(data[i]) > Math.pow(10, max)){
-        // if number of digits is greater than the previously stored max
-        max = (int)Math.ceil(Math.log10(Math.abs(data[i])));
-        // max is updated
+      if (Math.abs(data[i]) > max){
+        max = Math.abs(data[i]);
       }
     }
+    max = (int)Math.log10(max) + 1;
     //System.out.println(max);
     int place = 0;
     // current digit/place is set to zero
