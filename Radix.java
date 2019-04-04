@@ -45,18 +45,12 @@ public class Radix{
           // put in corresponding bucket between 10 and 19
         }
       }
-      dat = buckets[0];
-      // temp dat is set to MyLinkedList at index 0 of bucket
-      for (int i = 1; i < 20; i++){
+      for (int i = 0; i < 20; i++){
         dat.extend(buckets[i]);
         // merge dat with the remaining buckets
         //System.out.println(buckets[0]);
       }
       //System.out.println("buckets[0]" + dat);
-      for (int i = 0; i < 20; i++){
-        buckets[i] = new MyLinkedList<>();
-        // clear buckets
-      }
       place++;
       // increase place by one
     }
